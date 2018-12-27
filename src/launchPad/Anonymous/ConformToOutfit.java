@@ -1,4 +1,4 @@
-package launchPad;
+package launchPad.Anonymous;
 
 public interface ConformToOutfit {
 
