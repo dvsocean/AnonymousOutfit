@@ -1,8 +1,22 @@
 package launchPad.Lambda;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
+import launchPad.Lambda.enums.Sex;
 
 public class SearchPersons {
+
+  protected static List<Person> personList = new ArrayList<>();
+
+  protected static void populateArray(){
+    personList.add(new Person("Joe", Sex.MALE, LocalDate.of(2001,11, 9)));
+    personList.add(new Person("Vanessa", Sex.FEMALE, LocalDate.of(1994, 3, 28)));
+    personList.add(new Person("Steve", Sex.MALE, LocalDate.of(1960, 1, 17)));
+    personList.add(new Person("Aikey ", Sex.FEMALE, LocalDate.of(1954, 1, 24)));
+    personList.add(new Person("Rodger", Sex.MALE, LocalDate.of(1900, 2, 4)));
+  }
 
   public static void printPersonsOlderThan(List<Person> roster, int age) {
     for (Person p : roster) {
@@ -21,20 +35,26 @@ public class SearchPersons {
     }
   }
 
-  public static void printPersons (
-      List<Person> roster, CheckPerson tester) {
+  protected static List<Person> printPersons (List<Person> roster, Predicate<Person> tester) {
+    List<Person> listRange = new ArrayList<>();
     for (Person p : roster) {
-      if (tester.test(p)) {
-        p.printPerson();
+      if(tester.test(p)){
+        listRange.add(p);
       }
     }
+    return listRange;
   }
 
-  class CheckPersonEligibleForSelectiveService implements CheckPerson {
-    public boolean test(Person p) {
-      return p.gender == Person.Sex.MALE && p.getAge() >= 18 && p.getAge() <= 25;
-    }
-  }
+//  public static class CheckPersonEligibleForSelectiveService implements Predicate<Person> {
+//
+//    @Override
+//    public boolean test(Person person) {
+//      return person.getAge() >= 16 && person.getAge() <= 75;
+//    }
+//
+//  }
+
+
 
 
 
