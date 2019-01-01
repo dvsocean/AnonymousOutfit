@@ -26,6 +26,21 @@ public class Main extends SearchPersons {
     for(Person p: res) {
       System.out.println(p.toString());
     }
+
+    System.out.println("\n");
+
+    //Lambda way of calling the printPerson method
+    processPerson(Person::printPerson);
+    System.out.println("\n");
+
+    //The Predicate interface and the Consumer interface
+    processTwoLambdas(person -> person.getAge() > 10, Person::printAge);
+
+    //The Function interface, gets a value (arg1) then passes it to (arg2) for output
+    abstractMethodThatReturnsValueToSecondArg(Person::getAge, System.out::println);
+
+    //Perform a diff action using lambda expressions
+    performAction(Person::getEmail);
   }
 
 

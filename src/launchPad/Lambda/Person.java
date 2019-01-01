@@ -26,8 +26,17 @@ public class Person extends PersonUtils {
     return now.getYear() - birthday.getYear();
   }
 
-  public String printPerson() {
-    return "IT WORKS";
+  public void printAge(){
+    int age = getAge();
+    System.out.println("Age --> " + age);
+  }
+
+  public void printPerson() {
+    System.out.println("IT WORKSzz");
+  }
+
+  public void getEmail(){
+    System.out.println("Persons email address --> " + this.emailAddress);
   }
 
   @Override

@@ -3,6 +3,8 @@ package launchPad.Lambda;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import launchPad.Lambda.enums.Sex;
 
@@ -53,6 +55,30 @@ public class SearchPersons {
 //    }
 //
 //  }
+
+  protected static void processPerson(Consumer<Person> consumer){
+    Person p = new Person("Joe", Sex.MALE, LocalDate.of(1999, 11, 1));
+    consumer.accept(p);
+  }
+
+  protected static void processTwoLambdas(Predicate<Person> prd, Consumer<Person> cns){
+    Person p = new Person("Joe", Sex.MALE, LocalDate.of(1999, 11, 1));
+    if(prd.test(p)){
+      cns.accept(p);
+    }
+  }
+
+  protected static void performAction(Consumer<Person> cns){
+    Person p = new Person("Joe", Sex.MALE, LocalDate.of(1999, 11, 1));
+    cns.accept(p);
+  }
+
+  protected static void abstractMethodThatReturnsValueToSecondArg(Function<Person, Integer> mapper, Consumer<Integer> cns){
+    Person p = new Person("Joe", Sex.MALE, LocalDate.of(1999, 11, 1));
+    Integer data = mapper.apply(p);
+    System.out.println("Mapper data --> " + data);
+    cns.accept(data);
+  }
 
 
 
